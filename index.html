@@ -4,22 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breaking new! Open immediately!</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const img = document.getElementById('rickImg');
+    const player = document.getElementById('rickPlayer');
+    const audio = document.getElementById('audioPlayer');
+    const btn = document.getElementById('btn');
+
+    const movePlayer = (event) => {
+        const x = Math.random() * (window.innerWidth - player.clientWidth);
+        const y = Math.random() * (window.innerHeight - player.clientHeight);
+        player.style.left = `${x}px`;
+        player.style.top = `${y}px`;
+    };
+
+    player.addEventListener('mouseover', movePlayer);
+
+    const showEm = () => {
+        btn.style = 'display: none;';
+        player.style = '';
+        img.style = '';
+        audio.play();
+    };
+
+    btn.addEventListener('click', showEm);
+});
+    </script>
+<style>
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background: black;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: auto;
+}
+
+.player {
+    position: absolute;
+    left: 20%;
+    top: 50%;
+}
+
+#btn {
+    display: block;
+    padding: 20px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    border: 2px solid lightgreen;
+    border-radius: 5px;
+    background: transparent;
+    color: lightgreen;
+}
+#btn:hover {
+    background: #4C42;
+}
+
+#rickImg {
+    height: 100vh;
+    width: 100vw;
+}
+</style>
 </head>
+
 <body>
     <div class="container" id="container">
-        <h1 class="blinking">Welcome to the Ultimate Rick Roll! No escape!</h1>
-        <img src="rick-roll-rick-ashley.gif" alt="Rick Astley">
-        <marquee behavior="scroll" direction="left">Never gonna give you up, never gonna let you down!</marquee>
-        <p>Click the player to stop listening to the classic hit!</p>
-        <div id="rickPlayer" class="moving player">
+        <button id="btn">Get Torrent Link</button>
+        <img id="rickImg" src="rick-roll-rick-ashley.gif" alt="Rick Astley" style="display: none;">
+        <div id="rickPlayer" class="moving player" style="display: none;">
             <audio id="audioPlayer" controls autoplay>
                 <source src="jocofullinterview41.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
         </div>
-        <marquee behavior="scroll" direction="right" scrollamount="20">Never gonna run around and desert you!</marquee>
     </div>
 </body>
 </html>
